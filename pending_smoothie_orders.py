@@ -7,13 +7,13 @@ from snowflake.snowpark.functions import col, when_matched
 @st.cache_resource
 def create_session():
     return Session.builder.configs({
-        "account": st.secrets["snowflake"]["account"],
-        "user": st.secrets["snowflake"]["user"],
-        "password": st.secrets["snowflake"]["password"],
-        "role": st.secrets["snowflake"]["role"],
-        "warehouse": st.secrets["snowflake"]["warehouse"],
-        "database": st.secrets["snowflake"]["database"],
-        "schema": st.secrets["snowflake"]["schema"],
+        "account": st.secrets["account"],
+        "user": st.secrets["user"],
+        "password": st.secrets["password"],
+        "role": st.secrets["role"],
+        "warehouse": st.secrets["warehouse"],
+        "database": st.secrets["database"],
+        "schema": st.secrets["schema"],
     }).create()
 
 session = create_session()
