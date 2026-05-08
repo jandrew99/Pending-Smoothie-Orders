@@ -20,8 +20,8 @@ session = create_session()
 
 # --- TEST SNOWFLAKE CONNECTION ---
 try:
-    test_df = session.sql("SELECT CURRENT_USER(), CURRENT_ROLE(), CURRENT_WAREHOUSE()").collect()
-    st.success(f"Connected as: {test_df[0][0]} | Role: {test_df[0][1]} | WH: {test_df[0][2]}")
+    info = session.sql("SELECT CURRENT_USER(), CURRENT_ROLE()").collect()
+    st.success(f"Connected as {info[0][0]} using role {info[0][1]}")
 except Exception as e:
     st.error(f"Connection failed: {e}")
 
