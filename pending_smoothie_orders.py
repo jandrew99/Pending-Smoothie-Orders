@@ -2,7 +2,7 @@
 import streamlit as st
 from snowflake.snowpark import Session
 from snowflake.snowpark.functions import col, when_matched
-
+st.write("Loaded secrets:", list(st.secrets.keys()))
 # Create a Snowpark session manually
 @st.cache_resource
 def create_session():
