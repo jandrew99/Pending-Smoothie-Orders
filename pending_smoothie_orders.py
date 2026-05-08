@@ -3,27 +3,11 @@ import streamlit as st
 from snowflake.snowpark import Session
 from snowflake.snowpark.functions import col, when_matched
 st.write("Loaded secrets:", list(st.secrets.keys()))
-# Create a Snowpark session manually
-@st.cache_resource
-def create_session():
-    return Session.builder.configs({
-        "account": st.secrets["account"],
-        "user": st.secrets["user"],
-        "password": st.secrets["password"],
-        "role": st.secrets["role"],
-        "warehouse": st.secrets["warehouse"],
-        "database": st.secrets["database"],
-        "schema": st.secrets["schema"],
-    }).create()
 
-session = create_session()
 
-# --- TEST SNOWFLAKE CONNECTION ---
-try:
-    info = session.sql("SELECT CURRENT_USER(), CURRENT_ROLE()").collect()
-    st.success(f"Connected as {info[0][0]} using role {info[0][1]}")
-except Exception as e:
-    st.error(f"Connection failed: {e}")
+# Connect to Snowflake
+cnx = st.connection("snowflake")
+session = cnx.session()
 
 # Write directly to the app.
 st.title(":cup_with_straw: Pending Smoothie Orders :cup_with_straw:")
