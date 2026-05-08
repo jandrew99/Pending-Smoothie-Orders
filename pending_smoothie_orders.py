@@ -2,8 +2,7 @@
 import streamlit as st
 from snowflake.snowpark import Session
 from snowflake.snowpark.functions import col, when_matched
-st.write("Loaded secrets:", list(st.secrets.keys()))
-
+## st.write("Loaded secrets:", list(st.secrets.keys()))
 
 # Connect to Snowflake
 cnx = st.connection("snowflake")
